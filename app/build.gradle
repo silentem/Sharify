@@ -1,0 +1,58 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.sharify.sharify"
+        minSdkVersion 15
+        targetSdkVersion 21
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    androidExtensions { experimental = true }
+    dataBinding { enabled = true }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+
+    compile 'com.android.support:design:26.1.0'
+
+    //anko
+    compile 'org.jetbrains.anko:anko-common:0.10.3'
+    // Anko Layouts
+    compile 'org.jetbrains.anko:anko-sdk25:0.10.3'
+    compile 'org.jetbrains.anko:anko-appcompat-v7:0.10.3'
+    // Coroutine listeners for Anko Layouts
+    compile 'org.jetbrains.anko:anko-sdk25-coroutines:0.10.3'
+    compile 'org.jetbrains.anko:anko-appcompat-v7-coroutines:0.10.3'
+
+    compile 'cc.mvdan.accesspoint:library:0.2.0'
+
+}
+kapt {
+    generateStubs = true
+}
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
+}
